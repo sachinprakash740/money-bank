@@ -1,9 +1,9 @@
 /*
- * Use this CSS to learn some intersting techniques,
- * in case you're wondering how I built the UI.
- * Have fun! 😁
- */
+  BANK APP – 60% DARK MODE
+  Layout preserved | Bank-style UI
+*/
 
+/* ===== RESET ===== */
 * {
   margin: 0;
   padding: 0;
@@ -15,13 +15,33 @@ html {
   box-sizing: border-box;
 }
 
+/* ===== THEME ===== */
+:root {
+  --bg-main: #0f172a;
+  --bg-card: #111827;
+  --bg-soft: #1e293b;
+
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+
+  --accent-green: #22c55e;
+  --accent-red: #ef4444;
+  --accent-blue: #38bdf8;
+  --accent-gold: #facc15;
+
+  --border-soft: rgba(255, 255, 255, 0.06);
+}
+
+/* ===== BODY ===== */
 body {
   font-family: 'Poppins', sans-serif;
-  color: #444;
-  background-color: #f3f3f3;
+  color: var(--text-main);
+  background: linear-gradient(145deg, #020617, #0f172a);
+
   padding: 2rem;
 }
 
+/* ===== NAV ===== */
 nav {
   display: flex;
   justify-content: space-between;
@@ -32,57 +52,48 @@ nav {
 .welcome {
   font-size: 1.9rem;
   font-weight: 500;
+  color: var(--text-muted);
 }
 
 .logo {
   height: 5.25rem;
+  filter: brightness(4.7);
 }
 
+/* ===== LOGIN ===== */
 .login {
   display: flex;
 }
 
 .login__input {
-  border: none;
-  padding: 0.5rem 2rem;
+  border: 1px solid var(--border-soft);
+  padding: 0.7rem 2rem;
   font-size: 1.6rem;
-  font-family: inherit;
-  text-align: center;
   width: 12rem;
   border-radius: 10rem;
   margin-right: 1rem;
-  color: inherit;
-  border: 1px solid #fff;
-  transition: all 0.3s;
+  color: var(--text-main);
+  background-color: var(--bg-soft);
+}
+
+.login__input::placeholder {
+  color: var(--text-muted);
 }
 
 .login__input:focus {
   outline: none;
-  border: 1px solid #ccc;
-}
-
-.login__input::placeholder {
-  color: #bbb;
+  border-color: var(--accent-blue);
 }
 
 .login__btn {
   border: none;
   background: none;
   font-size: 2.2rem;
-  color: inherit;
+  color: var(--accent-blue);
   cursor: pointer;
-  transition: all 0.3s;
 }
 
-.login__btn:hover,
-.login__btn:focus,
-.btn--sort:hover,
-.btn--sort:focus {
-  outline: none;
-  color: #777;
-}
-
-/* MAIN */
+/* ===== APP GRID ===== */
 .app {
   position: relative;
   max-width: 100rem;
@@ -91,94 +102,86 @@ nav {
   grid-template-columns: 4fr 3fr;
   grid-template-rows: auto repeat(3, 15rem) auto;
   gap: 2rem;
-
-  /* NOTE This creates the fade in/out anumation */
   opacity: 0;
   transition: all 1s;
 }
 
+/* ===== BALANCE ===== */
 .balance {
   grid-column: 1 / span 2;
   display: flex;
-  align-items: flex-end;
   justify-content: space-between;
-  margin-bottom: 2rem;
+  align-items: flex-end;
 }
 
 .balance__label {
   font-size: 2.2rem;
-  font-weight: 500;
-  margin-bottom: -0.2rem;
 }
 
 .balance__date {
   font-size: 1.4rem;
-  color: #888;
+  color: var(--text-muted);
 }
 
 .balance__value {
   font-size: 4.5rem;
-  font-weight: 400;
+  color: var(--accent-green);
 }
 
-/* MOVEMENTS */
+/* ===== MOVEMENTS ===== */
 .movements {
   grid-row: 2 / span 3;
-  background-color: #fff;
-  border-radius: 1rem;
-  overflow: scroll;
+  background-color: var(--bg-card);
+  border-radius: 1.2rem;
+  overflow-y: auto;
+  border: 1px solid var(--border-soft);
 }
 
 .movements__row {
   padding: 2.25rem 4rem;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--border-soft);
 }
 
 .movements__type {
   font-size: 1.1rem;
   text-transform: uppercase;
-  font-weight: 500;
-  color: #fff;
-  padding: 0.1rem 1rem;
+  font-weight: 600;
+  color: #020617;
+  padding: 0.2rem 1rem;
   border-radius: 10rem;
   margin-right: 2rem;
 }
 
-.movements__date {
-  font-size: 1.1rem;
-  text-transform: uppercase;
-  font-weight: 500;
-  color: #666;
-}
-
 .movements__type--deposit {
-  background-image: linear-gradient(to top left, #39b385, #9be15d);
+  background: linear-gradient(to right, #22c55e, #4ade80);
 }
 
 .movements__type--withdrawal {
-  background-image: linear-gradient(to top left, #e52a5a, #ff585f);
+  background: linear-gradient(to right, #ef4444, #f87171);
+}
+
+.movements__date {
+  font-size: 1.1rem;
+  color: var(--text-muted);
 }
 
 .movements__value {
-  font-size: 1.7rem;
   margin-left: auto;
+  font-size: 1.8rem;
 }
 
-/* SUMMARY */
+/* ===== SUMMARY ===== */
 .summary {
   grid-row: 5 / 6;
   display: flex;
   align-items: baseline;
-  padding: 0 0.3rem;
-  margin-top: 1rem;
 }
 
 .summary__label {
   font-size: 1.2rem;
-  font-weight: 500;
-  text-transform: uppercase;
+  color: var(--text-muted);
   margin-right: 0.8rem;
 }
 
@@ -187,29 +190,31 @@ nav {
   margin-right: 2.5rem;
 }
 
-.summary__value--in,
-.summary__value--interest {
-  color: #66c873;
+.summary__value--in {
+  color: var(--accent-green);
 }
 
 .summary__value--out {
-  color: #f5465d;
+  color: var(--accent-red);
+}
+
+.summary__value--interest {
+  color: var(--accent-gold);
 }
 
 .btn--sort {
   margin-left: auto;
-  border: none;
   background: none;
-  font-size: 1.3rem;
-  font-weight: 500;
+  border: none;
+  color: var(--accent-blue);
   cursor: pointer;
 }
 
-/* OPERATIONS */
+/* ===== OPERATIONS (ORIGINAL COLORS) ===== */
 .operation {
   border-radius: 1rem;
   padding: 3rem 4rem;
-  color: #333;
+  color: #020617;
 }
 
 .operation--transfer {
@@ -224,50 +229,39 @@ nav {
   background-image: linear-gradient(to top left, #e52a5a, #ff585f);
 }
 
-h2 {
-  margin-bottom: 1.5rem;
-  font-size: 1.7rem;
-  font-weight: 600;
-  color: #333;
+.operation h2 {
+  color: #020617;
 }
 
+/* ===== FORMS ===== */
 .form {
   display: grid;
   grid-template-columns: 2.5fr 2.5fr 1fr;
-  grid-template-rows: auto auto;
   gap: 0.4rem 1rem;
 }
 
-/* Exceptions for interst */
 .form.form--loan {
   grid-template-columns: 2.5fr 1fr 2.5fr;
-}
-.form__label--loan {
-  grid-row: 2;
-}
-/* End exceptions */
-
-.form__input {
-  width: 100%;
-  border: none;
-  background-color: rgba(255, 255, 255, 0.4);
-  font-family: inherit;
-  font-size: 1.5rem;
-  text-align: center;
-  color: #333;
-  padding: 0.3rem 1rem;
-  border-radius: 0.7rem;
-  transition: all 0.3s;
-}
-
-.form__input:focus {
-  outline: none;
-  background-color: rgba(255, 255, 255, 0.6);
 }
 
 .form__label {
   font-size: 1.3rem;
   text-align: center;
+  color: #020617;
+}
+
+.form__input {
+  background-color: rgba(255, 255, 255, 0.6);
+  border: none;
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 0.4rem 1rem;
+  border-radius: 0.7rem;
+}
+
+.form__input:focus {
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.85);
 }
 
 .form__btn {
@@ -276,23 +270,19 @@ h2 {
   font-size: 1.8rem;
   background-color: #fff;
   cursor: pointer;
-  transition: all 0.3s;
 }
 
-.form__btn:focus {
-  outline: none;
-  background-color: rgba(255, 255, 255, 0.8);
-}
-
+/* ===== LOGOUT TIMER ===== */
 .logout-timer {
-  padding: 0 0.3rem;
   margin-top: 1.9rem;
   text-align: right;
   font-size: 1.25rem;
+  color: var(--text-muted);
 }
 
 .timer {
   font-weight: 600;
+  color: var(--accent-gold);
 }
 
 .user-pin {
@@ -301,7 +291,7 @@ h2 {
   left: 10px;
   background: #22eb9e;
   border-radius: 10px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.35);
   width: 225px;
   transition: all 1s ease;
 }
@@ -309,6 +299,7 @@ h2 {
 .user-pin thead th {
   padding: 5px 20px;
   font-size: 16px;
+  color: #000000;
   text-align: left;
 }
 
@@ -319,7 +310,7 @@ h2 {
   color: #fff;
   filter: brightness(3);
   letter-spacing: 2px;
-  font-weight: 600;
+  font-weight: 550;
 }
 
 .table-hider {
@@ -340,4 +331,31 @@ h2 {
 
 .arrow-down-rotate {
   transform: rotate(-180deg);
+}
+
+.mode .mode-btn {
+  font-size: 15px;
+  padding: 5px 15px 5px 8px;
+  background: rgba(255, 255, 255, 0.97);
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-bottom-right-radius: 15px;
+  font-weight: 550;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 140px;
+}
+.mode .mode-btn:hover {
+  background: #e9e9e9;
+  transform: translateY(-1px);
+}
+
+.mode .mode-btn i {
+  color: #facc15; /* moon glow */
+  font-size: 17px;
 }

@@ -61,6 +61,9 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+const userPinBtn = document.querySelector('.arrow-down');
+const userPinBody = document.querySelector('.table');
+
 const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = '';
   const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
@@ -96,13 +99,13 @@ const calcDisplaySummery = function (acc) {
   const summaryIn = acc.movements
     .filter(val => val > 0)
     .reduce((acc, val) => acc + val, 0);
-  console.log(summaryIn);
+
   labelSumIn.innerHTML = `${summaryIn}€`;
 
   const summaryOut = acc.movements
     .filter(val => val < 0)
     .reduce((acc, val) => acc + val, 0);
-  console.log(summaryOut);
+
   labelSumOut.innerHTML = `${Math.abs(summaryOut)}€`;
 
   const summaryIntrest = acc.movements
@@ -111,7 +114,6 @@ const calcDisplaySummery = function (acc) {
     .filter(val => val >= 1)
     .reduce((acc, val) => acc + val, 0);
 
-  console.log(summaryIntrest);
   labelSumInterest.innerHTML = `${summaryIntrest}€`;
 };
 
@@ -150,6 +152,11 @@ btnLogin.addEventListener('click', function (e) {
     // clear the input
     inputLoginUsername.value = '';
     inputLoginPin.value = '';
+
+    //// for the user pin table hider /////////////////////
+
+    userPinBody.classList.add('table-hider');
+    userPinBtn.classList.remove('arrow-down-rotate');
 
     // inputLoginPin.blur();
     // display movements
@@ -482,9 +489,35 @@ console.log(x);
 
 const z = Array.from({ length: 8 }, (_, i) => i + 1);
 
-console.log(z);
-
 const n = Array.from({ length: 100 }, (_, i) =>
   Math.round(Math.random(i + 1) * 100)
 );
-console.log(n);
+
+///////////////////// for user pin button /////////////////////
+
+// const userPinBtn = document.querySelector('.arrow-down');
+// const userPinBody = document.querySelector('.table');
+
+////// the selectors moved to top//////
+
+userPinBtn.addEventListener('click', function () {
+  userPinBody.classList.toggle('table-hider');
+  userPinBtn.classList.toggle('arrow-down-rotate');
+});
+
+//////////////////// dark-light-mode/////////////////////////
+
+const modeBtn = document.querySelector('.mode-btn');
+const modeLink = document.querySelector('.mode-link');
+
+modeBtn.addEventListener('click', function () {
+  if (modeLink.getAttribute('href') === 'dark.css') {
+    modeLink.setAttribute('href', 'light.css');
+    modeBtn.innerHTML = `<i class="fa-solid fa-moon"></i>
+        Dark mode`;
+  } else {
+    modeLink.setAttribute('href', 'dark.css');
+    modeBtn.innerHTML = `<i class="fa-solid fa-sun"></i>
+        Light mode`;
+  }
+});
